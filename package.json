@@ -1,0 +1,30 @@
+{
+  "name": "emilia",
+  "version": "1.0.0",
+  "description": "基于koa搭建的node后端",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa",
+    "mysql",
+    "node",
+    "TypeScript"
+  ],
+  "author": "EvilCodeMorty",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "koa": "^2.15.3",
+    "koa-router": "^12.0.1"
+  }
+}

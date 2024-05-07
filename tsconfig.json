@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // 编译后的目标语言版本;
+    "module": "CommonJS", // 模块系统;
+    "lib": ["ESNext"], // 编译过程中需要引入的库文件的列表;
+    "outDir": "./dist", // 输出目录;
+    "rootDir": "./src", // 输入文件的根目录;
+    "strict": true, // 启用所有严格的类型检查选项;
+    "moduleResolution": "node", // 模块解析策略;
+    "esModuleInterop": true, // 允许默认导入行为与 ECMAScript 模块兼容;
+    "resolveJsonModule": true, // 允许导入 JSON 模块;
+    "isolatedModules": true, // 每个文件作为单独的模块;
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any 类型时报错;
+    "noImplicitReturns": true, // 报告函数中的不可达的末端点;
+    "noFallthroughCasesInSwitch": true, // 报告 switch 语句的 case 穿透;
+    "allowSyntheticDefaultImports": true, // 允许从没有设置默认导出的模块中默认导入;
+    "forceConsistentCasingInFileNames": true, // 要求导入的模块名和文件名的大小写一致;
+    "strictNullChecks": true, // 启用严格的 null 检查;
+    "strictFunctionTypes": true, // 函数参数的类型检查;
+    "strictPropertyInitialization": true, // 类的实例属性必须初始化;
+    "noImplicitThis": true, // 当 this 表达式值为 any 类型的时候，生成一个错误;
+    "alwaysStrict": true, // 以严格模式检查每个模块，并在每个文件里加入 'use strict';
+    "noUnusedLocals": true, // 报告未使用的局部变量;
+    "noUnusedParameters": true, // 报告未使用的函数参数;
+    "noImplicitOverride": true, // 重写的方法必须显式标记为 override;
+    "noPropertyAccessFromIndexSignature": true, // 防止通过索引访问属性时出现错误;
+    "noUncheckedIndexedAccess": true, // 防止对可能为 undefined 的值进行索引访问;
+    "removeComments": true // 删除注释;
+  },
+  "include": ["src/**/*.ts"], // 要包含的文件或文件夹;
+  "exclude": ["node_modules"], // 要排除的文件或文件夹;
+  "typeRoots": ["./node_modules/@types", "./src/types"] // 声明文件（.d.ts 文件）的位置;
+}

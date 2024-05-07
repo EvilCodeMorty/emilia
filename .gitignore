@@ -1,0 +1,6 @@
+node_modules
+dist
+src/logs/error/
+src/ssl/
+uploads/
+.env
