@@ -1,5 +1,7 @@
 /**
- * 用户验证码池;
+ * @description 验证码管理池;
+ * @author EvilCodeMorty<EvilCodeMorty@163.com>;
+ * @since 2024-05-09 18:11:00;
  */
 import generateRandomString from "../utils/generateRandomString";
 class UserVerificationCodePool {
