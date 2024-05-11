@@ -7,11 +7,18 @@ import { Context } from "koa";
 import errorlogSave from "./errorlogSave";
 // 参数类型;
 type ErrorType = {
+  //错误码;
   code: string;
+  //HTTP状态码;
   status: number;
+  //错误类型;
   type: string;
+  //错误模块;
+  module: string;
+  //错误信息;
   message: string;
-  result: any;
+  //错误详情;
+  result: object | null;
 };
 const errorHandler = (error: ErrorType, ctx?: Context) => {
   try {
@@ -42,6 +49,7 @@ const errorHandler = (error: ErrorType, ctx?: Context) => {
         message: error.message,
         result: error.result,
       };
+      errorLogData.logContext = ctx;
       // 日志上下文信息简化处理;
     }
     // 如果不存在上下文则直接保存;

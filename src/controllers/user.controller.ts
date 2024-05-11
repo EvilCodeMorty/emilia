@@ -2,14 +2,17 @@
  * 用户相关的业务处理;
  */
 import { Context } from "koa";
-import errorHandler from "../utils/errorHandler";
 import { userRegisterFailure } from "../constants/error/user.error.type.constant";
 class UserController {
   //用户注册控制器;
   async register(ctx: Context) {
     try {
-      errorHandler(userRegisterFailure, ctx);
-    } catch (error) {}
+      ctx.app.emit("error", userRegisterFailure, ctx);
+      return;
+    } catch (error) {
+      ctx.app.emit("error", userRegisterFailure, ctx);
+      return;
+    }
   }
 }
 //实例化;

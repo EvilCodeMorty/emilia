@@ -7,33 +7,31 @@ import path from "path";
 import fs from "fs";
 type ErrorLogData = {};
 const errorlogSave = async (errorLogData: ErrorLogData) => {
-  console.log("errorLogData", errorLogData);
   try {
     //获取当前年份;
     const year = new Date().getFullYear();
-    //获取当前月份;
-    let month = String(new Date().getMonth() + 1);
-    //如果月份小于10,则月份前面补0;
-    if (Number(month) < 10) {
-      month = String(month).padStart(2, "0");
-    }
+    //获取当前月份,如果月份小于10,则月份前面补0;;
+    let month = String(new Date().getMonth() + 1).padStart(2, "0");
     const fileName = `${year}${month}`;
     const filePath = path.join(__dirname, `../logs/error/${fileName}.json`);
     //判断文件是否存在;
-    try {
-      fs.accessSync(filePath, fs.constants.F_OK);
-      //如果文件存在;
-      const data = fs.readFileSync(filePath, "utf8");
-      //将文件内容转为json格式;
-      const jsonData = JSON.parse(data);
-      //将错误日志添加到数组中;
-      jsonData.push(errorLogData);
-      //将json格式数据重新写入文件中;
-      fs.writeFileSync(filePath, JSON.stringify(jsonData));
-    } catch (error) {
-      // 如果文件不存在;
-      fs.writeFileSync(filePath, JSON.stringify([errorLogData]));
+    if (fs.existsSync(filePath)) {
+      let data = await fs.promises.readFile(filePath, "utf-8");
+      // 一般自动创建文件是不会为空的,防止某些手动删除日志文件内容导致系统报错;
+      if (data === "") {
+        data = "[]";
+      }
+      // 将数据转换为JSON格式;
+      const updatedData = JSON.parse(data);
+      // 将新的错误日志数据添加到数组中;
+      updatedData.push(errorLogData);
+      // 将更新后的数据写入文件;
+      await fs.promises.writeFile(filePath, JSON.stringify(updatedData));
+    } else {
+      await fs.promises.writeFile(filePath, JSON.stringify([errorLogData]));
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log("写入数据失败", error);
+  }
 };
 export default errorlogSave;
