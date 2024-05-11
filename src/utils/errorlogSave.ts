@@ -7,6 +7,7 @@ import path from "path";
 import fs from "fs";
 type ErrorLogData = {};
 const errorlogSave = async (errorLogData: ErrorLogData) => {
+  console.log("errorLogData", errorLogData);
   try {
     //获取当前年份;
     const year = new Date().getFullYear();
@@ -19,32 +20,20 @@ const errorlogSave = async (errorLogData: ErrorLogData) => {
     const fileName = `${year}${month}`;
     const filePath = path.join(__dirname, `../logs/error/${fileName}.json`);
     //判断文件是否存在;
-    fs.access(filePath, fs.constants.F_OK, (err) => {
+    try {
+      fs.accessSync(filePath, fs.constants.F_OK);
       //如果文件存在;
-      if (err === null) {
-        // 打开json文件,把数据转化成数组;
-        fs.readFile(filePath, "utf8", (error, data) => {
-          if (error) {
-          }
-          //把数据转化成数组;
-          const dataArr = JSON.parse(data);
-          //把数据追加到数组中;
-          dataArr.push(errorLogData);
-          //把数组转化成字符串;
-          const dataStr = JSON.stringify(dataArr);
-          //把字符串写入文件;
-          fs.writeFile(filePath, dataStr, (res) => {
-            if (res) {
-            }
-          });
-        });
-      } else {
-        //如果文件不存在,则创建文件并追加数据;
-        fs.writeFile(filePath, JSON.stringify([errorLogData]) + "\n", (res) => {
-          console.log(res);
-        });
-      }
-    });
+      const data = fs.readFileSync(filePath, "utf8");
+      //将文件内容转为json格式;
+      const jsonData = JSON.parse(data);
+      //将错误日志添加到数组中;
+      jsonData.push(errorLogData);
+      //将json格式数据重新写入文件中;
+      fs.writeFileSync(filePath, JSON.stringify(jsonData));
+    } catch (error) {
+      // 如果文件不存在;
+      fs.writeFileSync(filePath, JSON.stringify([errorLogData]));
+    }
   } catch (error) {}
 };
 export default errorlogSave;
