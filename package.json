@@ -1,0 +1,15 @@
+{
+  "name": "emilia",
+  "version": "1.0.0",
+  "description": "基于koa搭建的node后端",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "EvilCodeMorty",
+  "license": "MIT"
+}
