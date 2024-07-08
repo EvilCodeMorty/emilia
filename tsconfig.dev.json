@@ -1,15 +1,13 @@
 {
   "compilerOptions": {
     "target": "ESNext", //编译后的js文件的版本;
-    "module": "ESNext", //编译后的js文件的模块化规范;
-    "outDir": "./dist", //编译后的js文件的输出目录;
+    "module": "CommonJS", //编译后的js文件的模块化规范;
     "rootDir": "./src", //编译前的ts文件的根目录;
     "esModuleInterop": true, //是否启用es模块的interop;
     "strict": true, //开启所有严格的类型检查;
     "strictNullChecks": true, //开启null和undefined的严格检查;
     "skipLibCheck": true, //跳过声明文件的检查;
     "forceConsistentCasingInFileNames": true, //文件名的大小写必须一致;
-    "removeComments": true, //编译后的js文件是否移除注释;
     "noImplicitAny": true, //不允许隐式的any类型;
     "noImplicitThis": true, //不允许this有隐式的any类型;
     "alwaysStrict": true, //总是在严格模式下解析;
@@ -29,6 +27,5 @@
   "exclude": [
     "node_modules" //排除node_modules目录;
   ],
-  "compileOnSave": true, //保存文件时自动编译;
-  "ts-node": {}
+  "compileOnSave": true //保存文件时自动编译;
 }

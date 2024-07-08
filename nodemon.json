@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "ts-node src/emilia.ts",
+  "exec": "ts-node src/main.ts",
   "quiet": true
 }
